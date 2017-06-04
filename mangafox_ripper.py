@@ -23,6 +23,7 @@ def download_file(file_url, file_path):
             time.sleep(5)
             print("Retrying to download file...")
 
+        # noinspection PyUnboundLocalVariable
         if len(file.content) != 0:
             # print("length of file",len(file.content))
             break
@@ -73,7 +74,6 @@ def get_chapter_name(web_page_soup):
 
 
 def create_dir(dir_path):
-    print(dir_path)
     if not os.path.exists(dir_path):
         os.mkdir(dir_path)
         return True
@@ -93,14 +93,14 @@ def prepare_file_path(base_path, image_name):
     return base_path + image_name
 
 
-def download_chapter(start_page):
+def download_chapter(start_page, base_path=''):
     global current_page_url
     global page_soup
     current_page_url = start_page
     image_count = 0
     start_page_soup = bs(rq.get(start_page).content, 'lxml')
-    if create_dir(get_chapter_name(start_page_soup)):
-        base_path = get_chapter_name(start_page_soup) + "/"
+    if create_dir(base_path + get_chapter_name(start_page_soup)):
+        base_path += get_chapter_name(start_page_soup) + "/"
         page_soup = start_page_soup
         page_link = start_page
         while True:
