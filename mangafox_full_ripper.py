@@ -8,6 +8,11 @@ from ProgressBar import update_progress
 
 def download_complete_manga(manga_index_link):
     chapter_links = index_ripper.get_manga_indexes(manga_index_link)
+    if not os.path.exists("completed_links.inli"):
+        new_links_file = open("completed_links.inli", "w")
+        new_links_file.write(manga_index_link)
+        new_links_file.close()
+
     completed_links_file = open("completed_links.inli", "r")
     completed_links = completed_links_file.read().split("\n")
     completed_links_file.close()
