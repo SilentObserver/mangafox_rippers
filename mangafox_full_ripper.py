@@ -70,6 +70,11 @@ def create_or_check_for_base_folder(link):
     return path
 
 
+def auto_update_function(link):
+    path = create_or_check_for_base_folder(link)
+    return download_complete_manga(link, path, True)
+
+
 if __name__ == '__main__':
     print("Version1.2")
     index_link = input("Enter the link to the manga index:")
