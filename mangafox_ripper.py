@@ -93,7 +93,7 @@ def prepare_file_path(base_path, image_name):
     return base_path + image_name
 
 
-def download_chapter(start_page, base_path=''):
+def download_chapter(start_page, base_path='', return_chapter_name=False):
     global current_page_url
     global page_soup
     current_page_url = start_page
@@ -117,6 +117,8 @@ def download_chapter(start_page, base_path=''):
                 page_soup = bs(rq.get(next_link).content, 'lxml')
                 page_link = next_link
                 current_page_url = next_link
+        if return_chapter_name:
+            return get_chapter_name(start_page_soup)
 
 
 if __name__ == '__main__':
