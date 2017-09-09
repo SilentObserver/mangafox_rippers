@@ -7,10 +7,11 @@ if __name__ == "__main__":
     update_list = []
 
     for link in manga_list:
-        update_list += mfr.auto_update_function(link)
+        if len(link) is not 0:
+            update_list += mfr.auto_update_function(link)
 
     if len(update_list) is not 0:
-        print("New manga chpaters")
+        print("New manga chapters")
         for x in update_list:
             print(x)
 # print(manga_list)
